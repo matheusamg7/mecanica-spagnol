@@ -43,12 +43,18 @@ export function useAuth(): UseAuthReturn {
     loadUser();
 
     // Escutar mudanças de autenticação
-    const { data: authListener } = onAuthStateChange(async (event) => {
+    const { data: authListener } = onAuthStateChange(async (event, session) => {
+      console.log('🎧 [useAuth] Auth state change:', { event, session: !!session });
+      
       if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+        console.log('🔑 [useAuth] Login ou token refresh detectado, carregando user...');
         await loadUser();
       } else if (event === 'SIGNED_OUT') {
+        console.log('🚪 [useAuth] Logout detectado, limpando state...');
         setUser(null);
         setIsAdmin(false);
+      } else {
+        console.log('📡 [useAuth] Evento auth não tratado:', event);
       }
     });
 
@@ -59,24 +65,34 @@ export function useAuth(): UseAuthReturn {
 
   // Função para carregar usuário
   const loadUser = async () => {
+    console.log('🔄 [useAuth] loadUser iniciado');
     try {
       setLoading(true);
+      console.log('⏳ [useAuth] Loading state ativado');
+      
       const currentUser = await getCurrentUser();
+      console.log('👤 [useAuth] getCurrentUser resultado:', currentUser);
       
       if (currentUser) {
         setUser(currentUser);
+        console.log('✅ [useAuth] User setado:', { id: currentUser.id, email: currentUser.email });
+        
         // Verificar se é admin
+        console.log('🔐 [useAuth] Verificando status admin...');
         const adminStatus = await checkIsAdmin(currentUser.id);
+        console.log('🔐 [useAuth] Status admin:', adminStatus);
         setIsAdmin(adminStatus);
       } else {
+        console.log('❌ [useAuth] Nenhum usuário encontrado, limpando state');
         setUser(null);
         setIsAdmin(false);
       }
     } catch (error) {
-      console.error('Erro ao carregar usuário:', error);
+      console.error('💥 [useAuth] Erro ao carregar usuário:', error);
       setError('Erro ao carregar dados do usuário');
     } finally {
       setLoading(false);
+      console.log('✅ [useAuth] Loading state desativado');
     }
   };
 

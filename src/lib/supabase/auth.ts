@@ -1,13 +1,13 @@
-// Funções de autenticação - Mecânica Spagnol
+// Funções de autenticação - Mecânica Spagnol (Client-side)
+// ================================================================
+// IMPORTANTE: Estas funções usam o BROWSER CLIENT e devem ser 
+// chamadas apenas do lado do cliente (Client Components)
+// ================================================================
 
-import { createBrowserClient } from '@supabase/ssr';
+import { supabase } from '@/lib/supabase/client';
 import { Profile } from '@/types/database';
 
-// Criar cliente Supabase para auth
-const supabase = createBrowserClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+console.log('🔐 [auth] Módulo de autenticação inicializado');
 
 // Tipos de retorno das funções
 export interface AuthResponse {
@@ -216,6 +216,7 @@ export async function updateProfile(
 
 // Função para buscar profile do usuário
 export async function getProfile(userId: string): Promise<Profile | null> {
+  console.log('📄 [auth] getProfile iniciado para user:', userId);
   try {
     const { data, error } = await supabase
       .from('profiles')
@@ -223,14 +224,17 @@ export async function getProfile(userId: string): Promise<Profile | null> {
       .eq('id', userId)
       .single();
 
+    console.log('📄 [auth] Query profiles resultado:', { data, error });
+
     if (error) {
-      console.error('Erro ao buscar profile:', error);
+      console.error('💥 [auth] Erro ao buscar profile:', error);
       return null;
     }
 
+    console.log('✅ [auth] Profile retornado:', data);
     return data;
   } catch (error) {
-    console.error('Erro ao buscar profile:', error);
+    console.error('💥 [auth] Exception ao buscar profile:', error);
     return null;
   }
 }
@@ -274,22 +278,29 @@ export async function getSession() {
 
 // Função para obter usuário atual com profile
 export async function getCurrentUser(): Promise<AuthUser | null> {
+  console.log('👤 [auth] getCurrentUser iniciado');
   try {
     const { data: { user }, error } = await supabase.auth.getUser();
+    console.log('👤 [auth] supabase.auth.getUser resultado:', { user: !!user, error });
 
     if (error || !user) {
+      console.log('❌ [auth] Nenhum usuário ou erro:', error?.message);
       return null;
     }
 
+    console.log('🔍 [auth] Buscando profile para user:', user.id);
     const profile = await getProfile(user.id);
+    console.log('📄 [auth] Profile encontrado:', profile);
 
-    return {
+    const result = {
       id: user.id,
       email: user.email!,
       profile: profile || undefined,
     };
+    console.log('✅ [auth] getCurrentUser retornando:', result);
+    return result;
   } catch (error) {
-    console.error('Erro ao obter usuário atual:', error);
+    console.error('💥 [auth] Erro ao obter usuário atual:', error);
     return null;
   }
 }
