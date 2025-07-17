@@ -49,6 +49,40 @@ export const registerSchema = z.object({
     .regex(phoneRegex, 'Telefone inválido')
     .optional()
     .or(z.literal('')),
+  cpf: z
+    .string()
+    .min(1, 'CPF é obrigatório')
+    .regex(cpfRegex, 'CPF deve ter o formato 000.000.000-00')
+    .refine(
+      (cpf) => {
+        // Remove pontuação para validação
+        const numbers = cpf.replace(/[^\d]/g, '');
+        
+        // Verifica se tem 11 dígitos
+        if (numbers.length !== 11) return false;
+        
+        // Verifica se não são todos números iguais
+        if (/^(\d)\1{10}$/.test(numbers)) return false;
+        
+        // Validação dos dígitos verificadores
+        let sum = 0;
+        for (let i = 0; i < 9; i++) {
+          sum += parseInt(numbers[i]) * (10 - i);
+        }
+        let remainder = (sum * 10) % 11;
+        if (remainder === 10 || remainder === 11) remainder = 0;
+        if (remainder !== parseInt(numbers[9])) return false;
+        
+        sum = 0;
+        for (let i = 0; i < 10; i++) {
+          sum += parseInt(numbers[i]) * (11 - i);
+        }
+        remainder = (sum * 10) % 11;
+        if (remainder === 10 || remainder === 11) remainder = 0;
+        return remainder === parseInt(numbers[10]);
+      },
+      'CPF inválido'
+    ),
   acceptTerms: z
     .boolean()
     .refine(val => val === true, 'Você deve aceitar os termos de uso'),

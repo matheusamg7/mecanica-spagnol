@@ -12,7 +12,7 @@ interface AuthContextType {
   error: string | null;
   isAdmin: boolean;
   signIn: (email: string, password: string) => Promise<boolean>;
-  signUp: (email: string, password: string, fullName: string, phone?: string) => Promise<boolean>;
+  signUp: (email: string, password: string, fullName: string, phone?: string, cpf?: string) => Promise<boolean>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<boolean>;
   updatePassword: (newPassword: string) => Promise<boolean>;

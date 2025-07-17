@@ -57,7 +57,8 @@ export async function signUp(
   email: string,
   password: string,
   fullName: string,
-  phone?: string
+  phone?: string,
+  cpf?: string
 ): Promise<AuthResponse> {
   try {
     // Criar usuário
@@ -68,6 +69,7 @@ export async function signUp(
         data: {
           full_name: fullName,
           phone: phone,
+          cpf: cpf,
         },
         emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
       },
@@ -86,20 +88,8 @@ export async function signUp(
       };
     }
 
-    // Atualizar profile com dados adicionais
-    if (data.user) {
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .update({
-          full_name: fullName,
-          phone: phone,
-        })
-        .eq('id', data.user.id);
-
-      if (profileError) {
-        console.error('Erro ao atualizar profile:', profileError);
-      }
-    }
+    // Dados são salvos automaticamente pelo trigger create_profile_for_user
+    // que extrai full_name e phone do raw_user_meta_data
 
     return {
       success: true,

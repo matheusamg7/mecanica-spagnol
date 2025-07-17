@@ -23,7 +23,7 @@ interface UseAuthReturn {
   error: string | null;
   isAdmin: boolean;
   signIn: (email: string, password: string) => Promise<boolean>;
-  signUp: (email: string, password: string, fullName: string, phone?: string) => Promise<boolean>;
+  signUp: (email: string, password: string, fullName: string, phone?: string, cpf?: string) => Promise<boolean>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<boolean>;
   updatePassword: (newPassword: string) => Promise<boolean>;
@@ -109,13 +109,14 @@ export function useAuth(): UseAuthReturn {
     email: string, 
     password: string, 
     fullName: string, 
-    phone?: string
+    phone?: string,
+    cpf?: string
   ): Promise<boolean> => {
     try {
       setError(null);
       setLoading(true);
       
-      const response = await authSignUp(email, password, fullName, phone);
+      const response = await authSignUp(email, password, fullName, phone, cpf);
       
       if (!response.success) {
         setError(response.error || 'Erro ao criar conta');

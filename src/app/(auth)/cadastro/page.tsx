@@ -23,6 +23,7 @@ type RegisterFormData = {
   confirmPassword: string;
   full_name: string;
   phone?: string;
+  cpf: string;
   acceptTerms: boolean;
 };
 
@@ -41,6 +42,7 @@ export default function CadastroPage() {
       confirmPassword: '',
       full_name: '',
       phone: '',
+      cpf: '',
       acceptTerms: false,
     },
   });
@@ -53,7 +55,8 @@ export default function CadastroPage() {
         data.email, 
         data.password, 
         data.full_name, 
-        data.phone
+        data.phone,
+        data.cpf
       );
       
       if (success) {
@@ -80,6 +83,16 @@ export default function CadastroPage() {
     if (numbers.length <= 6) return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
     if (numbers.length <= 10) return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 6)}-${numbers.slice(6)}`;
     return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+  }
+
+  // Formatar CPF
+  function formatCPF(value: string) {
+    const numbers = value.replace(/\D/g, '');
+    
+    if (numbers.length <= 3) return numbers;
+    if (numbers.length <= 6) return `${numbers.slice(0, 3)}.${numbers.slice(3)}`;
+    if (numbers.length <= 9) return `${numbers.slice(0, 3)}.${numbers.slice(3, 6)}.${numbers.slice(6)}`;
+    return `${numbers.slice(0, 3)}.${numbers.slice(3, 6)}.${numbers.slice(6, 9)}-${numbers.slice(9, 11)}`;
   }
 
   return (
@@ -148,6 +161,27 @@ export default function CadastroPage() {
                     disabled={loading}
                     {...field}
                     onChange={(e) => field.onChange(formatPhone(e.target.value))}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="cpf"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>CPF</FormLabel>
+                <FormControl>
+                  <Input
+                    type="text"
+                    placeholder="000.000.000-00"
+                    autoComplete="off"
+                    disabled={loading}
+                    {...field}
+                    onChange={(e) => field.onChange(formatCPF(e.target.value))}
                   />
                 </FormControl>
                 <FormMessage />

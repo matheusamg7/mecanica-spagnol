@@ -9,6 +9,50 @@ CREATE TYPE user_role AS ENUM ('customer', 'admin');
 CREATE TYPE order_status AS ENUM ('pending', 'processing', 'shipped', 'delivered', 'cancelled');
 CREATE TYPE payment_status AS ENUM ('pending', 'paid', 'failed', 'refunded');
 
+-- ===================================================================
+-- FUNÇÃO SECURITY DEFINER PARA VERIFICAR ADMIN (SEM RECURSÃO RLS)
+-- ===================================================================
+
+-- Função que verifica se o usuário atual é admin
+-- SECURITY DEFINER permite que a função execute com privilégios elevados
+-- bypassing as policies RLS da tabela profiles para evitar recursão infinita
+CREATE OR REPLACE FUNCTION public.is_admin_user()
+RETURNS BOOLEAN
+SECURITY DEFINER -- Executa com privilégios de superuser, bypassa RLS
+SET search_path = public, auth -- Fixa search_path para segurança
+LANGUAGE plpgsql
+AS $$
+DECLARE
+  user_role text;
+BEGIN
+  -- Verificar se existe sessão ativa
+  IF auth.uid() IS NULL THEN
+    RETURN FALSE;
+  END IF;
+
+  -- Buscar role do usuário atual diretamente (sem RLS)
+  -- Esta query NÃO dispara policies pois a função é SECURITY DEFINER
+  SELECT role INTO user_role
+  FROM public.profiles 
+  WHERE id = auth.uid();
+
+  -- Retornar true se é admin, false caso contrário
+  RETURN COALESCE(user_role = 'admin', FALSE);
+
+EXCEPTION 
+  WHEN NO_DATA_FOUND THEN
+    -- Usuário não tem profile, não é admin
+    RETURN FALSE;
+  WHEN OTHERS THEN
+    -- Em caso de qualquer erro, assumir que não é admin por segurança
+    RETURN FALSE;
+END;
+$$;
+
+-- Adicionar comentário explicativo na função
+COMMENT ON FUNCTION public.is_admin_user() IS 
+'Verifica se o usuário atual é admin. Função SECURITY DEFINER para bypassing RLS policies e evitar recursão infinita.';
+
 -- 1. TABELA: profiles (extensão de auth.users)
 CREATE TABLE profiles (
   id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
@@ -31,13 +75,9 @@ CREATE POLICY "Usuários podem ver próprio perfil" ON profiles
 CREATE POLICY "Usuários podem atualizar próprio perfil" ON profiles
   FOR UPDATE USING (auth.uid() = id);
 
+-- Policy corrigida: usa função security definer para evitar recursão infinita
 CREATE POLICY "Admins podem ver todos os perfis" ON profiles
-  FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM profiles
-      WHERE profiles.id = auth.uid() AND profiles.role = 'admin'
-    )
-  );
+  FOR SELECT USING (public.is_admin_user());
 
 -- 2. TABELA: categories (categorias fixas)
 CREATE TABLE categories (
@@ -57,13 +97,9 @@ ALTER TABLE categories ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Categorias são públicas para leitura" ON categories
   FOR SELECT USING (is_active = true);
 
+-- Policy corrigida: usa função security definer para evitar recursão
 CREATE POLICY "Apenas admins podem modificar categorias" ON categories
-  FOR ALL USING (
-    EXISTS (
-      SELECT 1 FROM profiles
-      WHERE profiles.id = auth.uid() AND profiles.role = 'admin'
-    )
-  );
+  FOR ALL USING (public.is_admin_user());
 
 -- 3. TABELA: products
 CREATE TABLE products (
@@ -97,13 +133,9 @@ ALTER TABLE products ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Produtos ativos são públicos" ON products
   FOR SELECT USING (is_active = true);
 
+-- Policy corrigida: usa função security definer para evitar recursão
 CREATE POLICY "Apenas admins podem gerenciar produtos" ON products
-  FOR ALL USING (
-    EXISTS (
-      SELECT 1 FROM profiles
-      WHERE profiles.id = auth.uid() AND profiles.role = 'admin'
-    )
-  );
+  FOR ALL USING (public.is_admin_user());
 
 -- 4. TABELA: cart_items
 CREATE TABLE cart_items (
@@ -178,13 +210,9 @@ CREATE POLICY "Usuários podem ver próprios pedidos" ON orders
 CREATE POLICY "Usuários podem criar próprios pedidos" ON orders
   FOR INSERT WITH CHECK (auth.uid() = user_id);
 
+-- Policy corrigida: usa função security definer para evitar recursão
 CREATE POLICY "Admins podem gerenciar todos os pedidos" ON orders
-  FOR ALL USING (
-    EXISTS (
-      SELECT 1 FROM profiles
-      WHERE profiles.id = auth.uid() AND profiles.role = 'admin'
-    )
-  );
+  FOR ALL USING (public.is_admin_user());
 
 -- 7. TABELA: order_items
 CREATE TABLE order_items (
@@ -221,13 +249,9 @@ CREATE POLICY "Usuários podem criar itens de próprios pedidos" ON order_items
     )
   );
 
+-- Policy corrigida: usa função security definer para evitar recursão
 CREATE POLICY "Admins podem ver todos os itens" ON order_items
-  FOR ALL USING (
-    EXISTS (
-      SELECT 1 FROM profiles
-      WHERE profiles.id = auth.uid() AND profiles.role = 'admin'
-    )
-  );
+  FOR ALL USING (public.is_admin_user());
 
 -- 8. TABELA: payment_intents (preparação para integração futura)
 CREATE TABLE payment_intents (
@@ -258,13 +282,9 @@ CREATE POLICY "Usuários podem ver próprios pagamentos" ON payment_intents
 CREATE POLICY "Apenas sistema pode criar pagamentos" ON payment_intents
   FOR INSERT WITH CHECK (false);
 
+-- Policy corrigida: usa função security definer para evitar recursão
 CREATE POLICY "Admins podem ver todos os pagamentos" ON payment_intents
-  FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM profiles
-      WHERE profiles.id = auth.uid() AND profiles.role = 'admin'
-    )
-  );
+  FOR SELECT USING (public.is_admin_user());
 
 -- TRIGGERS E FUNCTIONS
 
@@ -294,24 +314,42 @@ CREATE TRIGGER update_orders_updated_at BEFORE UPDATE ON orders
 DROP TRIGGER IF EXISTS create_profile_on_signup ON auth.users;
 DROP FUNCTION IF EXISTS create_profile_for_user() CASCADE;
 
--- Criar a função corrigida com schema explícito
+-- Criar a função corrigida com schema explícito e extração de metadata
 CREATE OR REPLACE FUNCTION public.create_profile_for_user()
 RETURNS TRIGGER
 SECURITY DEFINER
 SET search_path = public, auth
 LANGUAGE plpgsql
 AS $$
+DECLARE
+  user_full_name text;
+  user_phone text;
+  user_cpf text;
 BEGIN
-  INSERT INTO public.profiles (id, email)
-  VALUES (NEW.id, NEW.email);
+  -- Extrair dados do raw_user_meta_data se existirem
+  user_full_name := COALESCE(NEW.raw_user_meta_data->>'full_name', NULL);
+  user_phone := COALESCE(NEW.raw_user_meta_data->>'phone', NULL);
+  user_cpf := COALESCE(NEW.raw_user_meta_data->>'cpf', NULL);
+
+  -- Inserir profile com todos os dados disponíveis
+  INSERT INTO public.profiles (id, email, full_name, phone, cpf)
+  VALUES (NEW.id, NEW.email, user_full_name, user_phone, user_cpf);
+  
   RETURN NEW;
 EXCEPTION 
   WHEN unique_violation THEN
-    -- Se o profile já existe, apenas retorna
+    -- Se o profile já existe, tentar atualizar com novos dados
+    UPDATE public.profiles 
+    SET 
+      full_name = COALESCE(user_full_name, full_name),
+      phone = COALESCE(user_phone, phone),
+      cpf = COALESCE(user_cpf, cpf),
+      updated_at = NOW()
+    WHERE id = NEW.id;
     RETURN NEW;
   WHEN OTHERS THEN
     -- Log do erro para debug
-    RAISE WARNING 'Erro ao criar profile: %', SQLERRM;
+    RAISE WARNING 'Erro ao criar/atualizar profile para user %: %', NEW.id, SQLERRM;
     -- Ainda assim retorna NEW para não bloquear a criação do user
     RETURN NEW;
 END;
