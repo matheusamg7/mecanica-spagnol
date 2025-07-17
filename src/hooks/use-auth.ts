@@ -38,13 +38,13 @@ export function useAuth(): UseAuthReturn {
   const [isAdmin, setIsAdmin] = useState(false);
   const router = useRouter();
 
-  // Carregar usuário inicial
+  // Carregar usuário inicial e configurar listener
   useEffect(() => {
     loadUser();
 
     // Escutar mudanças de autenticação
     const { data: authListener } = onAuthStateChange(async (event, session) => {
-      if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+      if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED' || event === 'USER_UPDATED') {
         await loadUser();
       } else if (event === 'SIGNED_OUT') {
         setUser(null);
@@ -52,6 +52,7 @@ export function useAuth(): UseAuthReturn {
       }
     });
 
+    // Cleanup
     return () => {
       authListener?.subscription.unsubscribe();
     };
@@ -60,8 +61,6 @@ export function useAuth(): UseAuthReturn {
   // Função para carregar usuário
   const loadUser = async () => {
     try {
-      setLoading(true);
-      
       const currentUser = await getCurrentUser();
       
       if (currentUser) {
