@@ -43,8 +43,20 @@ function LoginForm() {
       
       if (success) {
         toast.success('Login realizado com sucesso!');
-        router.push(redirectTo);
-        router.refresh();
+        
+        // Aguardar um momento para garantir que a sessão seja estabelecida
+        setTimeout(() => {
+          // Tentar primeiro com router.push
+          router.push(redirectTo);
+          router.refresh();
+          
+          // Fallback: usar window.location se ainda estiver na página de login após 1s
+          setTimeout(() => {
+            if (window.location.pathname === '/login') {
+              window.location.href = redirectTo;
+            }
+          }, 1000);
+        }, 500);
       } else {
         toast.error('Email ou senha inválidos');
       }

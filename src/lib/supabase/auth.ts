@@ -7,8 +7,6 @@
 import { supabase } from '@/lib/supabase/client';
 import { Profile } from '@/types/database';
 
-console.log('🔐 [auth] Módulo de autenticação inicializado');
-
 // Tipos de retorno das funções
 export interface AuthResponse {
   success: boolean;
@@ -44,7 +42,6 @@ export async function signIn(email: string, password: string): Promise<AuthRespo
       data: data.user,
     };
   } catch (error) {
-    console.error('Erro no login:', error);
     return {
       success: false,
       error: 'Erro inesperado. Tente novamente.',
@@ -61,16 +58,19 @@ export async function signUp(
   cpf?: string
 ): Promise<AuthResponse> {
   try {
+    // Preparar metadata para o usuário
+    const userData = {
+      full_name: fullName,
+      phone: phone || null,
+      cpf: cpf || null,
+    };
+
     // Criar usuário
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        data: {
-          full_name: fullName,
-          phone: phone,
-          cpf: cpf,
-        },
+        data: userData,
         emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
       },
     });
@@ -89,14 +89,13 @@ export async function signUp(
     }
 
     // Dados são salvos automaticamente pelo trigger create_profile_for_user
-    // que extrai full_name e phone do raw_user_meta_data
+    // que extrai full_name, phone e cpf do raw_user_meta_data
 
     return {
       success: true,
       data: data.user,
     };
   } catch (error) {
-    console.error('Erro no cadastro:', error);
     return {
       success: false,
       error: 'Erro inesperado. Tente novamente.',
@@ -120,7 +119,6 @@ export async function signOut(): Promise<AuthResponse> {
       success: true,
     };
   } catch (error) {
-    console.error('Erro no logout:', error);
     return {
       success: false,
       error: 'Erro inesperado ao fazer logout.',
@@ -146,7 +144,6 @@ export async function resetPassword(email: string): Promise<AuthResponse> {
       success: true,
     };
   } catch (error) {
-    console.error('Erro na recuperação de senha:', error);
     return {
       success: false,
       error: 'Erro inesperado. Tente novamente.',
@@ -172,7 +169,6 @@ export async function updatePassword(newPassword: string): Promise<AuthResponse>
       success: true,
     };
   } catch (error) {
-    console.error('Erro ao atualizar senha:', error);
     return {
       success: false,
       error: 'Erro inesperado. Tente novamente.',
@@ -206,7 +202,6 @@ export async function updateProfile(
       success: true,
     };
   } catch (error) {
-    console.error('Erro ao atualizar profile:', error);
     return {
       success: false,
       error: 'Erro inesperado. Tente novamente.',
@@ -216,7 +211,6 @@ export async function updateProfile(
 
 // Função para buscar profile do usuário
 export async function getProfile(userId: string): Promise<Profile | null> {
-  console.log('📄 [auth] getProfile iniciado para user:', userId);
   try {
     const { data, error } = await supabase
       .from('profiles')
@@ -224,17 +218,12 @@ export async function getProfile(userId: string): Promise<Profile | null> {
       .eq('id', userId)
       .single();
 
-    console.log('📄 [auth] Query profiles resultado:', { data, error });
-
     if (error) {
-      console.error('💥 [auth] Erro ao buscar profile:', error);
       return null;
     }
 
-    console.log('✅ [auth] Profile retornado:', data);
     return data;
   } catch (error) {
-    console.error('💥 [auth] Exception ao buscar profile:', error);
     return null;
   }
 }
@@ -254,7 +243,6 @@ export async function checkIsAdmin(userId: string): Promise<boolean> {
 
     return data.role === 'admin';
   } catch (error) {
-    console.error('Erro ao verificar admin:', error);
     return false;
   }
 }
@@ -265,42 +253,33 @@ export async function getSession() {
     const { data: { session }, error } = await supabase.auth.getSession();
 
     if (error) {
-      console.error('Erro ao obter sessão:', error);
       return null;
     }
 
     return session;
   } catch (error) {
-    console.error('Erro ao obter sessão:', error);
     return null;
   }
 }
 
 // Função para obter usuário atual com profile
 export async function getCurrentUser(): Promise<AuthUser | null> {
-  console.log('👤 [auth] getCurrentUser iniciado');
   try {
     const { data: { user }, error } = await supabase.auth.getUser();
-    console.log('👤 [auth] supabase.auth.getUser resultado:', { user: !!user, error });
 
     if (error || !user) {
-      console.log('❌ [auth] Nenhum usuário ou erro:', error?.message);
       return null;
     }
 
-    console.log('🔍 [auth] Buscando profile para user:', user.id);
     const profile = await getProfile(user.id);
-    console.log('📄 [auth] Profile encontrado:', profile);
 
     const result = {
       id: user.id,
       email: user.email!,
       profile: profile || undefined,
     };
-    console.log('✅ [auth] getCurrentUser retornando:', result);
     return result;
   } catch (error) {
-    console.error('💥 [auth] Erro ao obter usuário atual:', error);
     return null;
   }
 }

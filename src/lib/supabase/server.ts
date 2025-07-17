@@ -12,7 +12,6 @@ import { cookies } from 'next/headers';
 import { Database } from '@/types/supabase';
 
 export async function createClient() {
-  console.log('🖥️ [server] Criando server client...');
   const cookieStore = await cookies();
 
   const client = createServerClient<Database>(
@@ -22,17 +21,14 @@ export async function createClient() {
       cookies: {
         getAll() {
           const cookies = cookieStore.getAll();
-          console.log('🍪 [server] Obtendo cookies:', cookies.length);
           return cookies;
         },
         setAll(cookiesToSet) {
           try {
-            console.log('🍪 [server] Definindo cookies:', cookiesToSet.length);
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
             );
           } catch (error) {
-            console.log('⚠️ [server] Erro ao definir cookies (Server Component context):', error);
             // The `setAll` method was called from a Server Component.
             // This can be ignored if you have middleware refreshing
             // user sessions.
@@ -42,7 +38,6 @@ export async function createClient() {
     }
   );
 
-  console.log('✅ [server] Server client criado');
   return client;
 }
 
