@@ -13,8 +13,6 @@
 # testing
 /coverage
 
-supabase/migrations
-
 # next.js
 /.next/
 /out/

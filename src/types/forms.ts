@@ -50,7 +50,7 @@ export const productSchema = z.object({
   stock_quantity: z.number().int().min(0, 'Estoque não pode ser negativo'),
   category_id: z.number().int().positive('Categoria é obrigatória'),
   images: z.array(z.string()).default([]),
-  specifications: z.record(z.any()).default({}),
+  specifications: z.record(z.string(), z.any()).default({}),
   is_featured: z.boolean().default(false),
   is_active: z.boolean().default(true)
 });
