@@ -248,6 +248,8 @@ export async function checkIsAdmin(userId: string): Promise<boolean> {
 }
 
 // Função para obter sessão atual
+// DEPRECATED: Use getCurrentUser() em vez desta função para maior segurança
+// getSession() pode retornar dados não autenticados do localStorage
 export async function getSession() {
   try {
     const { data: { session }, error } = await supabase.auth.getSession();

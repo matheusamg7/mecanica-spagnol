@@ -45,8 +45,8 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  // Obter sessão atual
-  const { data: { session } } = await supabase.auth.getSession();
+  // Obter usuário atual (método seguro)
+  const { data: { user } } = await supabase.auth.getUser();
 
   // Verificar rotas protegidas
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
@@ -54,18 +54,18 @@ export async function middleware(request: NextRequest) {
   const isAuthRoute = authRoutes.some(route => pathname.startsWith(route));
 
   // Redirecionar para login se não autenticado em rotas protegidas
-  if ((isProtectedRoute || isAdminRoute) && !session) {
+  if ((isProtectedRoute || isAdminRoute) && !user) {
     const redirectUrl = new URL('/login', request.url);
     redirectUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(redirectUrl);
   }
 
   // Verificar permissão de admin
-  if (isAdminRoute && session) {
+  if (isAdminRoute && user) {
     const { data: profile } = await supabase
       .from('profiles')
       .select('role')
-      .eq('id', session.user.id)
+      .eq('id', user.id)
       .single();
 
     if (!profile || profile.role !== 'admin') {
@@ -76,7 +76,7 @@ export async function middleware(request: NextRequest) {
   // TEMPORARIAMENTE DESABILITADO: Redirecionar para home se já autenticado em páginas de auth
   // Este redirect estava causando loops e bloqueando navegação
   // Deixar o AuthLayout lidar com isso via server-side check mais confiável
-  if (isAuthRoute && session) {
+  if (isAuthRoute && user) {
     // return NextResponse.redirect(new URL('/', request.url));
   }
 

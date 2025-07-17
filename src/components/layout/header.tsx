@@ -2,20 +2,18 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, Search, ShoppingCart } from 'lucide-react';
+import { Menu, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { UserMenu } from '@/components/layout/user-menu';
 import { MobileMenu } from '@/components/layout/mobile-menu';
+import { CartButton } from '@/components/cart/cart-button';
+import { MiniCartDrawer } from '@/components/cart/cart-drawer';
 import { mainNav } from '@/lib/config/navigation';
 import { siteConfig } from '@/lib/config/site';
 import { cn } from '@/lib/utils';
 
 export function Header() {
   const pathname = usePathname();
-  
-  // TODO: Implementar lógica real de carrinho
-  const cartItemsCount = 0;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -54,18 +52,15 @@ export function Header() {
               <span className="sr-only">Buscar</span>
             </Button>
 
-            {/* Cart */}
-            <Link href="/carrinho">
-              <Button variant="ghost" size="icon" className="relative">
-                <ShoppingCart className="h-5 w-5" />
-                {cartItemsCount > 0 && (
-                  <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center">
-                    {cartItemsCount}
-                  </Badge>
-                )}
-                <span className="sr-only">Carrinho</span>
-              </Button>
-            </Link>
+            {/* Cart Drawer (Desktop) */}
+            <div className="hidden md:block">
+              <MiniCartDrawer />
+            </div>
+
+            {/* Cart Button (Mobile) */}
+            <div className="md:hidden">
+              <CartButton />
+            </div>
 
             {/* User Menu */}
             <UserMenu />

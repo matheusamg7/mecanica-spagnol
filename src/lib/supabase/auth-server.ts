@@ -8,6 +8,8 @@ import { createClient } from '@/lib/supabase/server';
 import { Profile } from '@/types/database';
 
 // Função para obter sessão atual (server-side)
+// AVISO: Esta função deve ser usada apenas para verificações não críticas
+// Para autenticação, sempre use getUser() que é mais seguro
 export async function getSession() {
   try {
     const supabase = await createClient();

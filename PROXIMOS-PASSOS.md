@@ -10,6 +10,7 @@
 - **Páginas Institucionais**: Home, Sobre e Contato funcionando
 - **Tipos TypeScript**: Interfaces completas para todas as entidades
 - **Middleware**: Proteção de rotas configurada
+- **Sistema de Autenticação**: Login, cadastro, proteção de rotas, área do usuário
 - **Lint**: Todos os erros corrigidos ✓
 
 ### Observações Importantes
@@ -48,45 +49,12 @@ WHERE email = 'seu-email@exemplo.com';
 
 ---
 
-## 📊 FASE 4: IMPLEMENTAR E-COMMERCE
+## 📊 FASE 5: IMPLEMENTAR PRODUTOS E CARRINHO
 
-### 4.1 Sistema de Autenticação (2-3 horas)
-
-#### Páginas a criar:
-- `/login` - Página de login
-- `/cadastro` - Página de cadastro  
-- `/esqueci-senha` - Recuperação de senha
-
-#### Componentes:
-```typescript
-// src/components/auth/login-form.tsx
-- Formulário com email/senha
-- Integração com Supabase Auth
-- Redirect após login
-- Link para cadastro
-
-// src/components/auth/signup-form.tsx  
-- Formulário completo com validação
-- Criação automática de profile
-- Login automático após cadastro
-
-// src/components/auth/auth-guard.tsx
-- HOC para proteger páginas
-- Verificação de role (admin/customer)
-```
-
-#### Hooks:
-```typescript
-// src/hooks/use-auth.ts
-- useAuth() - estado de autenticação
-- useUser() - dados do usuário atual
-- useRequireAuth() - redirect se não autenticado
-```
-
-### 4.2 Sistema de Produtos (3-4 horas)
+### 5.1 Sistema de Produtos (2 horas)
 
 #### Páginas:
-- `/loja` - Lista de produtos com filtros
+- `/produtos` - Lista de produtos com filtros
 - `/produtos/[slug]` - Detalhes do produto
 - `/categoria/[categoria]` - Produtos por categoria
 
@@ -171,11 +139,54 @@ interface CartStore {
 - Cupom de desconto (preparar)
 ```
 
-### 4.4 Sistema de Checkout (3-4 horas)
+### 5.2 Sistema de Carrinho (2 horas)
+
+#### Store Zustand:
+```typescript
+// src/store/cart-store.ts
+interface CartStore {
+  items: CartItem[]
+  isOpen: boolean
+  
+  // Actions
+  addItem(product, quantity)
+  updateQuantity(productId, quantity)
+  removeItem(productId)
+  clearCart()
+  syncCart() // sincronizar com banco se logado
+  
+  // Computed
+  getTotalItems()
+  getSubtotal()
+  getShipping() // calcular frete
+  getTotal()
+}
+```
+
+#### Componentes:
+```typescript
+// src/components/cart/cart-drawer.tsx
+- Sheet lateral com itens
+- Atualização de quantidade
+- Remoção de itens
+- Resumo e total
+- Botão checkout
+
+// src/components/cart/cart-icon.tsx
+- Ícone com badge contador
+- Animação ao adicionar
+
+// src/app/carrinho/page.tsx
+- Página completa do carrinho
+- Cálculo de frete
+- Cupom de desconto (preparar)
+```
+
+### 5.3 Sistema de Checkout (2 horas)
 
 #### Páginas:
 ```typescript
-// src/app/(shop)/checkout/page.tsx
+// src/app/checkout/page.tsx
 - Formulário multi-etapa
 - Verificar autenticação
 - Criar pedido no banco
@@ -219,9 +230,9 @@ interface CartStore {
 
 ---
 
-## 👨‍💼 FASE 5: PAINEL ADMINISTRATIVO
+## 👨‍💼 FASE 6: PAINEL ADMINISTRATIVO
 
-### 5.1 Dashboard (2 horas)
+### 6.1 Dashboard (2 horas)
 
 ```typescript
 // src/app/(admin)/admin/dashboard/page.tsx
@@ -234,7 +245,7 @@ interface CartStore {
 - Últimos pedidos
 ```
 
-### 5.2 Gestão de Produtos (3-4 horas)
+### 6.2 Gestão de Produtos (3-4 horas)
 
 #### Páginas:
 ```typescript
@@ -267,7 +278,7 @@ interface CartStore {
 - Ações inline
 ```
 
-### 5.3 Gestão de Pedidos (2-3 horas)
+### 6.3 Gestão de Pedidos (2-3 horas)
 
 ```typescript
 // src/app/(admin)/admin/pedidos/page.tsx
@@ -356,20 +367,19 @@ Preparar estrutura modular para:
 
 ## 📝 CHECKLIST DE IMPLEMENTAÇÃO
 
-### Fase 4: E-commerce
-- [ ] Sistema de autenticação completo
-- [ ] CRUD de produtos funcionando
+### Fase 5: Produtos e Carrinho
+- [ ] Sistema de produtos funcionando
 - [ ] Carrinho persistente com Zustand
 - [ ] Checkout multi-etapa
 - [ ] E-mails de confirmação
 
-### Fase 5: Admin
+### Fase 6: Admin
 - [ ] Dashboard com métricas
 - [ ] Gestão completa de produtos
 - [ ] Gestão de pedidos
 - [ ] Upload de imagens funcionando
 
-### Fase 6: Finalização
+### Fase 7: Finalização
 - [ ] Todos os testes passando
 - [ ] Performance otimizada
 - [ ] Deploy na Vercel
@@ -382,9 +392,10 @@ Preparar estrutura modular para:
 
 1. **Executar migrações no Supabase** ⚠️
 2. **Configurar bucket de Storage** ⚠️
-3. **Implementar autenticação** (base para tudo)
-4. **Criar alguns produtos de teste**
-5. **Implementar carrinho de compras**
+3. **Criar alguns produtos de teste**
+4. **Implementar listagem de produtos** (Fase 5.1)
+5. **Implementar sistema de carrinho** (Fase 5.2)
+6. **Implementar checkout** (Fase 5.3)
 
 ---
 
