@@ -119,4 +119,43 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom Scrollbar - Tema Spagnol */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #0252A7 #f3f4f6;
+  }
+
+  /* Chrome, Edge, Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #f3f4f6;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #0252A7;
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #0252A7dd;
+  }
+
+  /* Dark mode support */
+  .dark *::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+
+  .dark *::-webkit-scrollbar-thumb {
+    background: #0252A7;
+  }
 }
