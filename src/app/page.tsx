@@ -68,8 +68,8 @@ export default function Home() {
           className="relative rounded-3xl overflow-hidden min-h-[500px] flex items-end"
           style={{
             backgroundImage: 'url(/images/Scania-R450-Plus-1200x640.jpeg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundSize: '100%',
+            backgroundPosition: 'right center',
           }}
         >
           {/* Overlay escuro para melhor legibilidade do texto */}
@@ -140,58 +140,113 @@ export default function Home() {
       </section>
 
       {/* Categorias */}
-      <section className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Nossas Categorias</h2>
-          <p className="text-lg text-muted-foreground">
-            Encontre peças específicas para seu veículo
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((category) => (
-            <Card key={category.id} className="hover:shadow-lg transition-shadow">
-              <Link href={category.href}>
-                <CardHeader>
-                  <div className="text-4xl mb-4">{category.icon}</div>
-                  <CardTitle className="text-lg">{category.name}</CardTitle>
-                  <CardDescription>{category.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button variant="ghost" className="w-full">
-                    Ver produtos
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </CardContent>
+      <section className="mb-16">
+        <div className="bg-[#0252A7] py-12 relative overflow-hidden">
+          {/* Marca d'água */}
+          <div className="absolute top-0 right-1/4 flex items-center justify-center pointer-events-none h-full">
+            <img 
+              src="/images/peblogo.png" 
+              alt="" 
+              className="w-96 h-96 opacity-[0.12]"
+            />
+          </div>
+          <div className="container mx-auto px-4 relative z-10">
+          <div className="flex justify-between items-start mb-12">
+            <div>
+              <h2 className="text-3xl font-bold mb-4 text-white">
+                Ampla variedade de peças, agora também <span className="text-white">online!</span>
+              </h2>
+              <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mb-4"></div>
+              <p className="text-lg text-white/90">
+                Navegue por categorias e compre direto pelo nosso e-commerce:
+              </p>
+            </div>
+            <Button 
+              size="lg" 
+              asChild
+              style={{ backgroundColor: '#FFFFFF', color: '#0252A7' }}
+              className="hover:opacity-90 transition-opacity"
+            >
+              <Link href="/loja">
+                Ver todos os produtos
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Diferenciais */}
-      <section className="bg-muted/50 py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Por que escolher a Mecânica Spagnol?</h2>
-            <p className="text-lg text-muted-foreground">
-              Compromisso com qualidade e satisfação do cliente
-            </p>
+            </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="flex flex-col items-center text-center">
-                <div className="rounded-full bg-primary/10 p-4 mb-4">
-                  <feature.icon className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-semibold mb-2">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <Link href="/categoria/caminhonetes-a-diesel" className="group">
+            <div className="relative overflow-hidden rounded-lg transition-all h-44">
+              <img
+                src="/images/caminhonetes-a-diesel.jpg"
+                alt="Caminhonetes a Diesel"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0252A7] from-20% to-transparent to-50%" />
+              <div className="absolute bottom-0 left-0 right-0 py-1 px-3 text-white z-10 text-center">
+                <h3 className="font-semibold text-base">Caminhonetes a Diesel</h3>
               </div>
-            ))}
+              <div className="absolute inset-x-0 top-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                <span className="bg-[#EF1923] text-white px-4 py-2 rounded-md font-medium text-sm">Ver produtos</span>
+              </div>
+            </div>
+          </Link>
+
+          <Link href="/categoria/caminhoes-a-diesel" className="group">
+            <div className="relative overflow-hidden rounded-lg transition-all h-44">
+              <img
+                src="/images/caminhoes-a-diesel.jpg"
+                alt="Caminhões a Diesel"
+                className="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-115 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0252A7] from-20% to-transparent to-50%" />
+              <div className="absolute bottom-0 left-0 right-0 py-1 px-3 text-white z-10 text-center">
+                <h3 className="font-semibold text-base">Caminhões a Diesel</h3>
+              </div>
+              <div className="absolute inset-x-0 top-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                <span className="bg-[#EF1923] text-white px-4 py-2 rounded-md font-medium text-sm">Ver produtos</span>
+              </div>
+            </div>
+          </Link>
+
+          <Link href="/categoria/onibus" className="group">
+            <div className="relative overflow-hidden rounded-lg transition-all h-44">
+              <img
+                src="/images/onibus.jpg"
+                alt="Ônibus"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0252A7] from-20% to-transparent to-50%" />
+              <div className="absolute bottom-0 left-0 right-0 py-1 px-3 text-white z-10 text-center">
+                <h3 className="font-semibold text-base">Ônibus</h3>
+              </div>
+              <div className="absolute inset-x-0 top-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                <span className="bg-[#EF1923] text-white px-4 py-2 rounded-md font-medium text-sm">Ver produtos</span>
+              </div>
+            </div>
+          </Link>
+
+          <Link href="/categoria/linha-agricola" className="group">
+            <div className="relative overflow-hidden rounded-lg transition-all h-44">
+              <img
+                src="/images/linha-agricola.png"
+                alt="Linha Agrícola"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0252A7] from-20% to-transparent to-50%" />
+              <div className="absolute bottom-0 left-0 right-0 py-1 px-3 text-white z-10 text-center">
+                <h3 className="font-semibold text-base">Linha Agrícola</h3>
+              </div>
+              <div className="absolute inset-x-0 top-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                <span className="bg-[#EF1923] text-white px-4 py-2 rounded-md font-medium text-sm">Ver produtos</span>
+              </div>
+            </div>
+          </Link>
+        </div>
           </div>
         </div>
       </section>
+
 
       {/* CTA Section */}
       <section className="container mx-auto px-4">
