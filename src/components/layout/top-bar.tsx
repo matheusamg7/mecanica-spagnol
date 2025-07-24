@@ -31,7 +31,7 @@ export function TopBar() {
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex items-center justify-center text-sm gap-4 md:gap-12">
-          <span className="font-medium">Maior estoque de peças da região</span>
+          <span className="font-medium">A mais ampla seção de peças da região</span>
           <div className="flex items-center gap-1">
             <MapPin className="h-3 w-3" />
             <span>Av. Dom Pedro II, 120, Centro, Tapejara/RS</span>

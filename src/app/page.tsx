@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Truck, Wrench, Clock, Shield, ShoppingBag, MessageCircle } from 'lucide-react';
+import { ArrowRight, Truck, Wrench, Clock, Shield, ShoppingBag, MessageCircle, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -248,6 +248,228 @@ export default function Home() {
       </section>
 
 
+      {/* Peças Raras */}
+      <section className="container mx-auto px-4 mb-16 -mt-8">
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold mb-4 text-[#151515]">
+            Peças raras que só se encontram aqui.
+          </h2>
+          <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent mb-4"></div>
+          <p className="text-lg text-muted-foreground">
+            Seleção especial para restauradores, colecionadores e apaixonados por clássicos.
+          </p>
+        </div>
+
+        <div className="relative">
+          <div className="flex gap-6 overflow-x-auto scrollbar-hide pb-4">
+            {/* Produto 1 - Bloco Motor Mercedes 1113 */}
+            <div className="flex-none w-64">
+              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden h-full group/card">
+                <div className="aspect-square bg-gray-100 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 z-10">
+                    <div className="relative">
+                      <div className="bg-[#EF1923] text-white px-4 py-1 text-xs font-medium" 
+                           style={{clipPath: 'polygon(0 0, 100% 0, 100% 100%, 15% 100%)'}}>
+                        Peça Rara
+                      </div>
+                    </div>
+                  </div>
+                  <img
+                    src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=400&fit=crop"
+                    alt="Bloco Motor Mercedes 1113"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover/card:scale-110"
+                  />
+                </div>
+                <div className="p-4 flex flex-col h-[calc(100%-16rem)]">
+                  <h3 className="font-semibold text-base mb-1">Bloco Motor Mercedes 1113</h3>
+                  <p className="text-sm text-gray-500 mb-2">Cód: MB-1113-BL</p>
+                  <p className="text-xl font-bold text-[#0252A7] mb-3 mt-auto">R$ 8.900,00</p>
+                  <Button 
+                    className="w-full bg-[#0252A7] hover:bg-[#0252A7]/90 text-white cursor-pointer mb-2"
+                    size="sm"
+                  >
+                    Comprar agora
+                  </Button>
+                  <Button 
+                    className="w-full bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+                    size="sm"
+                    asChild
+                  >
+                    <a href="https://wa.me/555433441455?text=Olá! Tenho interesse na peça: Bloco Motor Mercedes 1113 (Cód: MB-1113-BL)" target="_blank" rel="noopener noreferrer">
+                      Comprar via WhatsApp
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Produto 2 - Cabeçote FNM D-11000 */}
+            <div className="flex-none w-64">
+              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden h-full group/card">
+                <div className="aspect-square bg-gray-100 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 z-10">
+                    <div className="relative">
+                      <div className="bg-[#EF1923] text-white px-4 py-1 text-xs font-medium" 
+                           style={{clipPath: 'polygon(0 0, 100% 0, 100% 100%, 15% 100%)'}}>
+                        Peça Rara
+                      </div>
+                    </div>
+                  </div>
+                  <img
+                    src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=400&fit=crop"
+                    alt="Cabeçote FNM D-11000"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover/card:scale-110"
+                  />
+                </div>
+                <div className="p-4 flex flex-col h-[calc(100%-16rem)]">
+                  <h3 className="font-semibold text-base mb-1">Cabeçote FNM D-11000</h3>
+                  <p className="text-sm text-gray-500 mb-2">Cód: FNM-D11-CB</p>
+                  <p className="text-xl font-bold text-[#0252A7] mb-3 mt-auto">R$ 6.500,00</p>
+                  <Button 
+                    className="w-full bg-[#0252A7] hover:bg-[#0252A7]/90 text-white cursor-pointer mb-2"
+                    size="sm"
+                  >
+                    Comprar agora
+                  </Button>
+                  <Button 
+                    className="w-full bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+                    size="sm"
+                    asChild
+                  >
+                    <a href="https://wa.me/555433441455?text=Olá! Tenho interesse na peça: Cabeçote FNM D-11000 (Cód: FNM-D11-CB)" target="_blank" rel="noopener noreferrer">
+                      Comprar via WhatsApp
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Produto 3 - Câmbio Scania L111 */}
+            <div className="flex-none w-64">
+              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden h-full group/card">
+                <div className="aspect-square bg-gray-100 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 z-10">
+                    <div className="relative">
+                      <div className="bg-[#EF1923] text-white px-4 py-1 text-xs font-medium" 
+                           style={{clipPath: 'polygon(0 0, 100% 0, 100% 100%, 15% 100%)'}}>
+                        Peça Rara
+                      </div>
+                    </div>
+                  </div>
+                  <img
+                    src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=400&fit=crop"
+                    alt="Câmbio Scania L111"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover/card:scale-110"
+                  />
+                </div>
+                <div className="p-4 flex flex-col h-[calc(100%-16rem)]">
+                  <h3 className="font-semibold text-base mb-1">Câmbio Scania L111 Original</h3>
+                  <p className="text-sm text-gray-500 mb-2">Cód: SC-L111-CB</p>
+                  <p className="text-xl font-bold text-[#0252A7] mb-3 mt-auto">R$ 12.800,00</p>
+                  <Button 
+                    className="w-full bg-[#0252A7] hover:bg-[#0252A7]/90 text-white cursor-pointer mb-2"
+                    size="sm"
+                  >
+                    Comprar agora
+                  </Button>
+                  <Button 
+                    className="w-full bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+                    size="sm"
+                    asChild
+                  >
+                    <a href="https://wa.me/555433441455?text=Olá! Tenho interesse na peça: Câmbio Scania L111 Original (Cód: SC-L111-CB)" target="_blank" rel="noopener noreferrer">
+                      Comprar via WhatsApp
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Produto 4 - Radiador Chevrolet C60 */}
+            <div className="flex-none w-64">
+              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden h-full group/card">
+                <div className="aspect-square bg-gray-100 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 z-10">
+                    <div className="relative">
+                      <div className="bg-[#EF1923] text-white px-4 py-1 text-xs font-medium" 
+                           style={{clipPath: 'polygon(0 0, 100% 0, 100% 100%, 15% 100%)'}}>
+                        Peça Rara
+                      </div>
+                    </div>
+                  </div>
+                  <img
+                    src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=400&fit=crop"
+                    alt="Radiador Chevrolet C60"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover/card:scale-110"
+                  />
+                </div>
+                <div className="p-4 flex flex-col h-[calc(100%-16rem)]">
+                  <h3 className="font-semibold text-base mb-1">Radiador Chevrolet C60</h3>
+                  <p className="text-sm text-gray-500 mb-2">Cód: CHV-C60-RD</p>
+                  <p className="text-xl font-bold text-[#0252A7] mb-3 mt-auto">R$ 2.450,00</p>
+                  <Button 
+                    className="w-full bg-[#0252A7] hover:bg-[#0252A7]/90 text-white cursor-pointer mb-2"
+                    size="sm"
+                  >
+                    Comprar agora
+                  </Button>
+                  <Button 
+                    className="w-full bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+                    size="sm"
+                    asChild
+                  >
+                    <a href="https://wa.me/555433441455?text=Olá! Tenho interesse na peça: Radiador Chevrolet C60 (Cód: CHV-C60-RD)" target="_blank" rel="noopener noreferrer">
+                      Comprar via WhatsApp
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Produto 5 - Carburador Ford F350 */}
+            <div className="flex-none w-64">
+              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden h-full group/card">
+                <div className="aspect-square bg-gray-100 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 z-10">
+                    <div className="relative">
+                      <div className="bg-[#EF1923] text-white px-4 py-1 text-xs font-medium" 
+                           style={{clipPath: 'polygon(0 0, 100% 0, 100% 100%, 15% 100%)'}}>
+                        Peça Rara
+                      </div>
+                    </div>
+                  </div>
+                  <img
+                    src="https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?w=400&h=400&fit=crop"
+                    alt="Carburador Ford F350"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover/card:scale-110"
+                  />
+                </div>
+                <div className="p-4 flex flex-col h-[calc(100%-16rem)]">
+                  <h3 className="font-semibold text-base mb-1">Carburador Ford F350 71</h3>
+                  <p className="text-sm text-gray-500 mb-2">Cód: FRD-F350-CB</p>
+                  <p className="text-xl font-bold text-[#0252A7] mb-3 mt-auto">R$ 1.850,00</p>
+                  <Button 
+                    className="w-full bg-[#0252A7] hover:bg-[#0252A7]/90 text-white cursor-pointer mb-2"
+                    size="sm"
+                  >
+                    Comprar agora
+                  </Button>
+                  <Button 
+                    className="w-full bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+                    size="sm"
+                    asChild
+                  >
+                    <a href="https://wa.me/555433441455?text=Olá! Tenho interesse na peça: Carburador Ford F350 71 (Cód: FRD-F350-CB)" target="_blank" rel="noopener noreferrer">
+                      Comprar via WhatsApp
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="container mx-auto px-4">
         <div className="bg-primary rounded-lg p-8 md:p-12 text-center text-primary-foreground">
@@ -272,27 +494,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Produtos em Destaque */}
-      <section className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Produtos em Destaque</h2>
-          <p className="text-lg text-muted-foreground">
-            Confira nossas ofertas especiais
-          </p>
-        </div>
-
-        {/* TODO: Adicionar produtos em destaque quando implementar sistema de produtos */}
-        <div className="bg-muted/50 rounded-lg p-12 text-center">
-          <p className="text-muted-foreground">
-            Em breve produtos em destaque estarão disponíveis aqui
-          </p>
-          <Button className="mt-4" asChild>
-            <Link href="/loja">
-              Ver todos os produtos
-            </Link>
-          </Button>
-        </div>
-      </section>
     </div>
   );
 }
