@@ -99,7 +99,7 @@ export default function Home() {
       </section>
 
       {/* Vantagens/Diferenciais */}
-      <section className="py-2">
+      <section className="-mt-6 pb-4">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 relative">
             {/* Envio Rápido */}

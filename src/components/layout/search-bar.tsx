@@ -2,7 +2,6 @@
 
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 
 export function SearchBar() {
   return (
@@ -10,17 +9,16 @@ export function SearchBar() {
       <Input
         type="search"
         placeholder="Buscar peças, marcas ou modelos..."
-        className="w-full pl-10 pr-24 h-11 focus-visible:ring-0 focus-visible:ring-offset-0 hover:border-border"
+        className="w-full pl-10 pr-12 h-11 focus-visible:ring-0 focus-visible:ring-offset-0 hover:border-border"
       />
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
-      <Button
+      <button
         type="submit"
-        size="sm"
-        className="absolute right-1 top-1/2 transform -translate-y-1/2 h-9 hover:opacity-90 transition-opacity"
-        style={{ backgroundColor: '#0252A7', color: '#FFFFFF' }}
+        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-[#0252A7] transition-colors"
       >
-        Buscar
-      </Button>
+        <Search className="h-5 w-5" />
+        <span className="sr-only">Buscar</span>
+      </button>
     </form>
   );
 }

@@ -17,23 +17,23 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
-        <div className="flex h-20 items-center gap-4">
+        <div className="flex h-24 items-center gap-4">
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
             <Image
               src="/images/logo-spagnol.png"
               alt="Spagnol Mecânica Agrícola"
-              width={180}
-              height={60}
-              className="h-14 w-auto"
+              width={220}
+              height={75}
+              className="h-16 w-auto"
               priority
             />
           </Link>
 
           {/* Search Bar - Desktop */}
-          <div className="hidden md:block max-w-2xl ml-8">
+          <div className="hidden md:block max-w-2xl ml-16">
             <SearchBar />
           </div>
 
@@ -46,7 +46,7 @@ export function Header() {
                 className={cn(
                   'text-base font-medium transition-colors hover:text-[#0252A7] whitespace-nowrap',
                   pathname === item.href
-                    ? 'text-foreground'
+                    ? 'text-[#0252A7]'
                     : 'text-muted-foreground'
                 )}
               >
@@ -72,7 +72,7 @@ export function Header() {
 
             {/* Mobile Menu */}
             <MobileMenu>
-              <button className="md:hidden p-2 text-foreground hover:text-[#0252A7] transition-colors">
+              <button className="md:hidden p-2 text-[#0252A7] hover:text-[#0252A7]/80 transition-colors">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Menu</span>
               </button>

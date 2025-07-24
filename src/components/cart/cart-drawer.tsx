@@ -289,7 +289,7 @@ export function MiniCartDrawer() {
 
   return (
     <CartDrawer>
-      <button className="relative p-2 text-foreground hover:text-[#0252A7] transition-colors">
+      <button className="relative p-2 text-[#0252A7] hover:text-[#0252A7]/80 transition-colors">
         <ShoppingCart className="h-6 w-6" />
         {totalItems > 0 && (
           <Badge className="absolute -top-1 -right-1 h-6 w-6 rounded-full p-0 flex items-center justify-center text-xs">
