@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Truck, Wrench, Clock, Shield } from 'lucide-react';
+import { ArrowRight, Truck, Wrench, Clock, Shield, ShoppingBag, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -64,29 +64,76 @@ export default function Home() {
     <div className="flex flex-col gap-16 pb-16">
       {/* Hero Banner Section */}
       <section className="container mx-auto px-4 pt-6">
-        <div className="relative bg-gradient-to-b from-muted/50 to-background rounded-3xl overflow-hidden">
-          <div className="py-20 px-8">
-            <div className="flex flex-col items-center text-center gap-6 max-w-3xl mx-auto">
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-                Peças e Acessórios para <span className="text-primary">Veículos Pesados</span>
+        <div 
+          className="relative rounded-3xl overflow-hidden min-h-[500px] flex items-end"
+          style={{
+            backgroundImage: 'url(/images/Scania-R450-Plus-1200x640.jpeg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          {/* Overlay escuro para melhor legibilidade do texto */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+          
+          <div className="relative pb-20 pt-12 px-8 md:px-16 w-full z-10">
+            <div className="flex flex-col items-start text-left gap-6 max-w-4xl">
+              <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-white">
+                Desde 1970 no mercado de mecânica pesada.
               </h1>
-              <p className="text-xl text-muted-foreground">
-                Especializada em caminhonetes a diesel, caminhões pesados, ônibus e máquinas agrícolas. 
-                Qualidade e tradição há mais de 20 anos.
+              <p className="text-xl text-gray-200 max-w-2xl">
+                Especialistas em caminhões, ônibus, tratores e caminhonetes, com décadas de confiança.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" asChild>
-                  <Link href="/loja">
-                    Ver Produtos
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link href="/contato">
-                    Fale Conosco
-                  </Link>
-                </Button>
-              </div>
+              <Button 
+                size="lg" 
+                asChild
+                style={{ backgroundColor: '#0252A7', color: '#FFFFFF' }}
+                className="hover:opacity-90 transition-opacity"
+              >
+                <Link href="/sobre">
+                  Conheça a Spagnol
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vantagens/Diferenciais */}
+      <section className="py-2">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 relative">
+            {/* Envio Rápido */}
+            <div className="text-center relative">
+              <Truck className="h-10 w-10 text-gray-600 mx-auto mb-3" />
+              <p className="text-base font-medium text-gray-700">Envio rápido</p>
+              <p className="text-sm text-gray-500">Para todo Brasil</p>
+              {/* Divisória direita - mobile e desktop */}
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 h-16 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent md:block hidden"></div>
+            </div>
+
+            {/* Compra Online */}
+            <div className="text-center relative">
+              <ShoppingBag className="h-10 w-10 text-gray-600 mx-auto mb-3" />
+              <p className="text-base font-medium text-gray-700">Compre pelo site</p>
+              <p className="text-sm text-gray-500">E receba em casa</p>
+              {/* Divisória direita - apenas desktop */}
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 h-16 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent hidden md:block"></div>
+            </div>
+
+            {/* Qualidade e Garantia */}
+            <div className="text-center relative">
+              <Shield className="h-10 w-10 text-gray-600 mx-auto mb-3" />
+              <p className="text-base font-medium text-gray-700">Qualidade e garantia</p>
+              <p className="text-sm text-gray-500">Produtos certificados</p>
+              {/* Divisória direita - apenas desktop */}
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 h-16 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent hidden md:block"></div>
+            </div>
+
+            {/* Atendimento Especializado */}
+            <div className="text-center">
+              <MessageCircle className="h-10 w-10 text-gray-600 mx-auto mb-3" />
+              <p className="text-base font-medium text-gray-700">Atendimento especializado</p>
+              <p className="text-sm text-gray-500">Equipe especializada</p>
             </div>
           </div>
         </div>
