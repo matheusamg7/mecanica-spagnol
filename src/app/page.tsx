@@ -81,7 +81,7 @@ export default function Home() {
                 Desde 1970 no mercado de mecânica pesada.
               </h1>
               <p className="text-xl text-gray-200 max-w-2xl">
-                Especialistas em caminhões, ônibus, tratores e caminhonetes, com décadas de confiança.
+                Especialistas em linha diesel leve e pesada, e linha agrícola, com décadas de confiança e expertise.
               </p>
               <Button 
                 size="lg" 
@@ -140,7 +140,7 @@ export default function Home() {
       </section>
 
       {/* Categorias */}
-      <section className="mb-16">
+      <section className="mb-16 -mt-6">
         <div className="bg-[#0252A7] py-12 relative overflow-hidden">
           {/* Marca d'água */}
           <div className="absolute top-0 right-1/4 flex items-center justify-center pointer-events-none h-full">
