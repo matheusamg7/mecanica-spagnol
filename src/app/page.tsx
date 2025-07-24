@@ -62,29 +62,31 @@ const features = [
 export default function Home() {
   return (
     <div className="flex flex-col gap-16 pb-16">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-muted/50 to-background py-20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center text-center gap-6 max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-              Peças e Acessórios para <span className="text-primary">Veículos Pesados</span>
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              Especializada em caminhonetes a diesel, caminhões pesados, ônibus e máquinas agrícolas. 
-              Qualidade e tradição há mais de 20 anos.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" asChild>
-                <Link href="/loja">
-                  Ver Produtos
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/contato">
-                  Fale Conosco
-                </Link>
-              </Button>
+      {/* Hero Banner Section */}
+      <section className="container mx-auto px-4 pt-6">
+        <div className="relative bg-gradient-to-b from-muted/50 to-background rounded-3xl overflow-hidden">
+          <div className="py-20 px-8">
+            <div className="flex flex-col items-center text-center gap-6 max-w-3xl mx-auto">
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+                Peças e Acessórios para <span className="text-primary">Veículos Pesados</span>
+              </h1>
+              <p className="text-xl text-muted-foreground">
+                Especializada em caminhonetes a diesel, caminhões pesados, ônibus e máquinas agrícolas. 
+                Qualidade e tradição há mais de 20 anos.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" asChild>
+                  <Link href="/loja">
+                    Ver Produtos
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <Link href="/contato">
+                    Fale Conosco
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
