@@ -264,8 +264,8 @@ export default function Home() {
           <div className="flex gap-6 overflow-x-auto scrollbar-hide pb-4">
             {/* Produto 1 - Bloco Motor Mercedes 1113 */}
             <div className="flex-none w-64">
-              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden h-full group/card">
-                <div className="aspect-square bg-gray-100 relative overflow-hidden">
+              <div className="bg-white border border-gray-200 rounded-md overflow-hidden h-full group/card shadow-md shadow-gray-300/50">
+                <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
                   <div className="absolute top-0 right-0 z-10">
                     <div className="relative">
                       <div className="bg-[#EF1923] text-white px-4 py-1 text-xs font-medium" 
@@ -296,6 +296,7 @@ export default function Home() {
                     asChild
                   >
                     <a href="https://wa.me/555433441455?text=Olá! Tenho interesse na peça: Bloco Motor Mercedes 1113 (Cód: MB-1113-BL)" target="_blank" rel="noopener noreferrer">
+                      <MessageCircle className="h-4 w-4 mr-2" />
                       Comprar via WhatsApp
                     </a>
                   </Button>
@@ -305,8 +306,8 @@ export default function Home() {
 
             {/* Produto 2 - Cabeçote FNM D-11000 */}
             <div className="flex-none w-64">
-              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden h-full group/card">
-                <div className="aspect-square bg-gray-100 relative overflow-hidden">
+              <div className="bg-white border border-gray-200 rounded-md overflow-hidden h-full group/card shadow-md shadow-gray-300/50">
+                <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
                   <div className="absolute top-0 right-0 z-10">
                     <div className="relative">
                       <div className="bg-[#EF1923] text-white px-4 py-1 text-xs font-medium" 
@@ -337,6 +338,7 @@ export default function Home() {
                     asChild
                   >
                     <a href="https://wa.me/555433441455?text=Olá! Tenho interesse na peça: Cabeçote FNM D-11000 (Cód: FNM-D11-CB)" target="_blank" rel="noopener noreferrer">
+                      <MessageCircle className="h-4 w-4 mr-2" />
                       Comprar via WhatsApp
                     </a>
                   </Button>
@@ -346,8 +348,8 @@ export default function Home() {
 
             {/* Produto 3 - Câmbio Scania L111 */}
             <div className="flex-none w-64">
-              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden h-full group/card">
-                <div className="aspect-square bg-gray-100 relative overflow-hidden">
+              <div className="bg-white border border-gray-200 rounded-md overflow-hidden h-full group/card shadow-md shadow-gray-300/50">
+                <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
                   <div className="absolute top-0 right-0 z-10">
                     <div className="relative">
                       <div className="bg-[#EF1923] text-white px-4 py-1 text-xs font-medium" 
@@ -378,6 +380,7 @@ export default function Home() {
                     asChild
                   >
                     <a href="https://wa.me/555433441455?text=Olá! Tenho interesse na peça: Câmbio Scania L111 Original (Cód: SC-L111-CB)" target="_blank" rel="noopener noreferrer">
+                      <MessageCircle className="h-4 w-4 mr-2" />
                       Comprar via WhatsApp
                     </a>
                   </Button>
@@ -387,8 +390,8 @@ export default function Home() {
 
             {/* Produto 4 - Radiador Chevrolet C60 */}
             <div className="flex-none w-64">
-              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden h-full group/card">
-                <div className="aspect-square bg-gray-100 relative overflow-hidden">
+              <div className="bg-white border border-gray-200 rounded-md overflow-hidden h-full group/card shadow-md shadow-gray-300/50">
+                <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
                   <div className="absolute top-0 right-0 z-10">
                     <div className="relative">
                       <div className="bg-[#EF1923] text-white px-4 py-1 text-xs font-medium" 
@@ -419,6 +422,7 @@ export default function Home() {
                     asChild
                   >
                     <a href="https://wa.me/555433441455?text=Olá! Tenho interesse na peça: Radiador Chevrolet C60 (Cód: CHV-C60-RD)" target="_blank" rel="noopener noreferrer">
+                      <MessageCircle className="h-4 w-4 mr-2" />
                       Comprar via WhatsApp
                     </a>
                   </Button>
@@ -428,8 +432,8 @@ export default function Home() {
 
             {/* Produto 5 - Carburador Ford F350 */}
             <div className="flex-none w-64">
-              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden h-full group/card">
-                <div className="aspect-square bg-gray-100 relative overflow-hidden">
+              <div className="bg-white border border-gray-200 rounded-md overflow-hidden h-full group/card shadow-md shadow-gray-300/50">
+                <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
                   <div className="absolute top-0 right-0 z-10">
                     <div className="relative">
                       <div className="bg-[#EF1923] text-white px-4 py-1 text-xs font-medium" 
@@ -460,6 +464,7 @@ export default function Home() {
                     asChild
                   >
                     <a href="https://wa.me/555433441455?text=Olá! Tenho interesse na peça: Carburador Ford F350 71 (Cód: FRD-F350-CB)" target="_blank" rel="noopener noreferrer">
+                      <MessageCircle className="h-4 w-4 mr-2" />
                       Comprar via WhatsApp
                     </a>
                   </Button>
