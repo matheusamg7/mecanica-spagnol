@@ -77,33 +77,43 @@ const serviceImages = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-8 sm:gap-16 pb-8 sm:pb-16">
+    <div className="flex flex-col gap-8 sm:gap-16">
       {/* Hero Banner Section */}
       <section className="container mx-auto px-3 sm:px-4 pt-4 sm:pt-6">
         <div 
-          className="relative rounded-2xl sm:rounded-3xl overflow-hidden min-h-[350px] sm:min-h-[500px] flex items-end"
+          className="relative rounded-2xl sm:rounded-3xl overflow-hidden min-h-[350px] sm:min-h-[500px] flex items-end sm:items-end bg-white sm:bg-transparent"
           style={{
-            backgroundImage: 'url(/images/Scania-R450-Plus-1200x640.jpeg)',
+            backgroundImage: 'none',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
-          {/* Overlay escuro para melhor legibilidade do texto */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+          {/* Background image for desktop only */}
+          <div 
+            className="hidden sm:block absolute inset-0 -z-10"
+            style={{
+              backgroundImage: 'url(/images/Scania-R450-Plus-1200x640.jpeg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
+          
+          {/* Overlay escuro para melhor legibilidade do texto - desktop only */}
+          <div className="hidden sm:block absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
           
           <div className="relative pb-12 sm:pb-20 pt-8 sm:pt-12 px-6 sm:px-8 md:px-16 w-full z-10">
             <div className="flex flex-col items-start text-left gap-4 sm:gap-6 max-w-4xl">
-              <h1 className="text-2xl sm:text-3xl md:text-5xl font-semibold tracking-tight text-white">
+              <h1 className="text-3xl sm:text-3xl md:text-5xl font-semibold tracking-tight text-[#151515] sm:text-white">
                 Desde 1970 no mercado de mecânica pesada.
               </h1>
-              <p className="text-base sm:text-xl text-gray-200 max-w-2xl">
+              <p className="text-lg sm:text-xl text-gray-600 sm:text-gray-200 max-w-2xl">
                 Especialistas em linha diesel leve e pesada, e linha agrícola, com décadas de confiança e expertise.
               </p>
               <Button 
-                size="default" 
+                size="lg" 
                 asChild
                 style={{ backgroundColor: '#0252A7', color: '#FFFFFF' }}
-                className="hover:opacity-90 transition-opacity text-sm sm:text-base"
+                className="hover:opacity-90 transition-opacity text-base sm:text-lg px-8 py-6"
               >
                 <Link href="/sobre">
                   Conheça a Spagnol
@@ -167,28 +177,29 @@ export default function Home() {
             />
           </div>
           <div className="container mx-auto px-3 sm:px-4 relative z-10">
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6 sm:gap-8 mb-8 sm:mb-12">
-            <div className="max-w-2xl">
-              <h2 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4 text-white whitespace-nowrap">
-                Ampla variedade de peças, agora também <span className="text-white">online!</span>
-              </h2>
-              <div className="w-20 sm:w-24 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mb-3 sm:mb-4"></div>
-              <p className="text-base sm:text-lg text-white/90">
-                Navegue por categorias e compre direto pelo nosso e-commerce:
-              </p>
+          <div className="flex flex-col gap-6 sm:gap-8 mb-8 sm:mb-12">
+            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6 sm:gap-8">
+              <div className="max-w-2xl">
+                <h2 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4 text-white whitespace-nowrap">
+                  Ampla variedade de peças, agora também <span className="text-white">online!</span>
+                </h2>
+                <div className="w-20 sm:w-24 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mb-3 sm:mb-4"></div>
+                <p className="text-base sm:text-lg text-white/90">
+                  Navegue por categorias e compre direto pelo nosso e-commerce:
+                </p>
+              </div>
+              <Button 
+                size="default" 
+                asChild
+                style={{ backgroundColor: '#FFFFFF', color: '#0252A7' }}
+                className="hover:opacity-90 transition-opacity self-start lg:self-auto hidden lg:inline-flex"
+              >
+                <Link href="/loja">
+                  Ver todos os produtos
+                  <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
+                </Link>
+              </Button>
             </div>
-            <Button 
-              size="default" 
-              asChild
-              style={{ backgroundColor: '#FFFFFF', color: '#0252A7' }}
-              className="hover:opacity-90 transition-opacity self-start lg:self-auto"
-            >
-              <Link href="/loja">
-                <span className="hidden sm:inline">Ver todos os produtos</span>
-                <span className="sm:hidden">Ver produtos</span>
-                <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
-              </Link>
-            </Button>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8">
@@ -260,6 +271,21 @@ export default function Home() {
             </div>
           </Link>
         </div>
+          
+          {/* Botão mobile - abaixo dos cards */}
+          <div className="flex justify-center mt-6 lg:hidden">
+            <Button 
+              size="default" 
+              asChild
+              style={{ backgroundColor: '#FFFFFF', color: '#0252A7' }}
+              className="hover:opacity-90 transition-opacity"
+            >
+              <Link href="/loja">
+                Ver produtos
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
           </div>
         </div>
       </section>
@@ -591,24 +617,50 @@ export default function Home() {
       <section className="container mx-auto px-3 sm:px-4">
         <div className="bg-primary rounded-lg p-6 sm:p-8 md:p-12 text-center text-primary-foreground">
           <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">
-            Precisa de ajuda para encontrar a peça certa?
+            Encontre o que precisa com quem entende do assunto
           </h2>
           <p className="text-base sm:text-lg mb-6 sm:mb-8 opacity-90">
-            Nossa equipe está pronta para ajudar você a encontrar exatamente o que precisa
+            Peças, serviços e atendimento técnico num só lugar.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <Button size="default" variant="secondary" asChild className="w-full sm:w-auto">
-              <Link href="/contato">
-                Falar com Especialista
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+            <Button 
+              size="default" 
+              variant="secondary" 
+              asChild 
+              className="w-full sm:w-auto"
+            >
+              <Link href="/loja">
+                Ver todos os produtos
               </Link>
             </Button>
-            <Button size="default" variant="outline" className="bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto" asChild>
-              <a href="https://wa.me/555433441455" target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="h-4 w-4 mr-2" />
-                WhatsApp
+            <span className="text-white/60 hidden sm:inline">|</span>
+            <Button 
+              size="default" 
+              variant="outline" 
+              className="bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto" 
+              asChild
+            >
+              <a href="https://wa.me/555433441455?text=Olá! Gostaria de falar com a oficina." target="_blank" rel="noopener noreferrer">
+                Falar com a Oficina
               </a>
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Mapa Section */}
+      <section className="w-full mt-8 sm:mt-16">
+        <div className="overflow-hidden shadow-lg">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.8095832451455!2d-52.01697068491931!3d-28.605674282423974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94fd3e7b0e6e7a85%3A0x9e5f5f1c5d8b2a3b!2sAv.%20Dom%20Pedro%20II%2C%20120%20-%20Centro%2C%20Tapejara%20-%20RS%2C%2099950-000!5e0!3m2!1spt-BR!2sbr!4v1625151234567"
+            width="100%"
+            height="450"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="w-full h-[300px] sm:h-[450px]"
+          />
         </div>
       </section>
 
