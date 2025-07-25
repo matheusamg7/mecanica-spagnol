@@ -283,7 +283,8 @@ export default function Home() {
               Peças raras que só se encontram aqui.
             </h2>
           </div>
-          <p className="text-base sm:text-lg text-muted-foreground mt-3 sm:mt-4 px-4">
+          <div className="w-20 sm:w-24 h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto mb-3 sm:mb-4"></div>
+          <p className="text-base sm:text-lg text-muted-foreground px-4">
             Seleção especial para restauradores, colecionadores e apaixonados por clássicos.
           </p>
         </div>
