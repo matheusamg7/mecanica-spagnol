@@ -526,7 +526,7 @@ export default function Home() {
                 </h2>
                 <div className="w-20 sm:w-24 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mb-4"></div>
                 <p className="text-base sm:text-lg text-white/90 mb-6 sm:mb-8">
-                  De veículos leves a pesados, agrícolas ou rodoviários, oferecemos serviços especializados com estrutura, peças e equipe técnica capacitada.
+                  De caminhonetes, veículos agrícolas a pesados rodoviários, oferecemos serviços especializados com estrutura, peças e equipe técnica capacitada.
                 </p>
                 
                 <ul className="space-y-2 mb-8">
@@ -540,7 +540,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="text-[#EF1923] font-medium text-sm">|</span>
-                    <span className="text-white">Sistemas de freio, câmbio, motor;</span>
+                    <span className="text-white">Sistemas de freio, motor e câmbio;</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="text-[#EF1923] font-medium text-sm">|</span>
