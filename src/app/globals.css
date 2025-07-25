@@ -123,6 +123,10 @@
   html {
     scroll-behavior: smooth;
   }
+  
+  body {
+    position: relative;
+  }
 
   /* Custom Scrollbar - Tema Spagnol */
   /* Firefox */
@@ -166,5 +170,55 @@
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;  /* Chrome, Safari and Opera */
+  }
+  
+  /* Prevent horizontal overflow on mobile */
+  @media (max-width: 640px) {
+    * {
+      max-width: 100vw;
+    }
+  }
+  
+  /* Animações do grid de fotos */
+  @keyframes slide-up {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+  
+  @keyframes slide-down {
+    0% {
+      transform: translateY(-50%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 15s linear infinite;
+  }
+  
+  .animate-slide-down {
+    animation: slide-down 15s linear infinite;
+  }
+  
+  .animate-slide-down-slow {
+    animation: slide-down 25s linear infinite;
+  }
+  
+  .animate-slide-up-slow {
+    animation: slide-up 20s linear infinite;
+  }
+  
+  .animate-slide-up-very-slow {
+    animation: slide-up 40s linear infinite;
+  }
+  
+  .animate-slide-down-very-slow {
+    animation: slide-down 40s linear infinite;
   }
 }
