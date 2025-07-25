@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { TopBar } from "@/components/layout/top-bar";
 import { Header } from "@/components/layout/header";
@@ -9,6 +9,11 @@ import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "@/contexts/auth-context";
 
 const inter = Inter({ subsets: ["latin"] });
+const ibmPlexSans = IBM_Plex_Sans({ 
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-ibm-plex-sans"
+});
 
 export const metadata: Metadata = {
   title: {
@@ -45,7 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className} ${ibmPlexSans.variable}`}>
         <AuthProvider>
           <div className="relative flex min-h-screen flex-col">
             <TopBar />

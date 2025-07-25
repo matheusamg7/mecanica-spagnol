@@ -153,7 +153,7 @@ export default function Home() {
           <div className="container mx-auto px-4 relative z-10">
           <div className="flex justify-between items-start mb-12">
             <div>
-              <h2 className="text-3xl font-bold mb-4 text-white">
+              <h2 className="text-4xl font-bold mb-4 text-white">
                 Ampla variedade de peças, agora também <span className="text-white">online!</span>
               </h2>
               <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mb-4"></div>
@@ -250,18 +250,29 @@ export default function Home() {
 
       {/* Peças Raras */}
       <section className="container mx-auto px-4 mb-16 -mt-8">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-4 text-[#151515]">
-            Peças raras que só se encontram aqui.
-          </h2>
-          <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-transparent mb-4"></div>
-          <p className="text-lg text-muted-foreground">
+        <div className="mb-10 text-center">
+          <div className="relative inline-block">
+            {/* Detalhes decorativos minimalistas - apenas superiores */}
+            <div className="absolute -top-4 -left-10 w-16 h-10 pointer-events-none">
+              <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-l from-transparent to-[#EF1923] rounded-r-sm"></div>
+              <div className="absolute top-0 left-0 h-full w-[1.5px] bg-gradient-to-b from-[#EF1923] to-transparent rounded-b-sm"></div>
+            </div>
+            <div className="absolute -top-4 -right-10 w-16 h-10 pointer-events-none">
+              <div className="absolute top-0 right-0 w-full h-[1.5px] bg-gradient-to-r from-transparent to-[#EF1923] rounded-l-sm"></div>
+              <div className="absolute top-0 right-0 h-full w-[1.5px] bg-gradient-to-b from-[#EF1923] to-transparent rounded-b-sm"></div>
+            </div>
+            
+            <h2 className="text-4xl font-bold text-[#151515] px-20 py-3">
+              Peças raras que só se encontram aqui.
+            </h2>
+          </div>
+          <p className="text-lg text-muted-foreground mt-4">
             Seleção especial para restauradores, colecionadores e apaixonados por clássicos.
           </p>
         </div>
 
-        <div className="relative">
-          <div className="flex gap-6 overflow-x-auto scrollbar-hide pb-4">
+        <div className="relative flex justify-center">
+          <div className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 mx-auto">
             {/* Produto 1 - Bloco Motor Mercedes 1113 */}
             <div className="flex-none w-64">
               <div className="bg-white border border-gray-200 rounded-md overflow-hidden h-full group/card shadow-md shadow-gray-300/50">
