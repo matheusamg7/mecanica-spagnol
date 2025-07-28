@@ -215,7 +215,7 @@ export default function Home() {
                 <h3 className="font-semibold text-xs sm:text-base">Caminhonetes a Diesel</h3>
               </div>
               <div className="absolute inset-x-0 top-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                <span className="text-white text-base sm:text-lg font-bold drop-shadow-lg">Ver produtos</span>
+                <span className="text-[#0252A7] text-base sm:text-lg font-bold drop-shadow-lg">Ver produtos</span>
               </div>
             </div>
           </Link>
@@ -232,7 +232,7 @@ export default function Home() {
                 <h3 className="font-semibold text-xs sm:text-base">Caminhões a Diesel</h3>
               </div>
               <div className="absolute inset-x-0 top-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                <span className="text-white text-base sm:text-lg font-bold drop-shadow-lg">Ver produtos</span>
+                <span className="text-[#0252A7] text-base sm:text-lg font-bold drop-shadow-lg">Ver produtos</span>
               </div>
             </div>
           </Link>
@@ -249,7 +249,7 @@ export default function Home() {
                 <h3 className="font-semibold text-xs sm:text-base">Ônibus</h3>
               </div>
               <div className="absolute inset-x-0 top-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                <span className="text-white text-base sm:text-lg font-bold drop-shadow-lg">Ver produtos</span>
+                <span className="text-[#0252A7] text-base sm:text-lg font-bold drop-shadow-lg">Ver produtos</span>
               </div>
             </div>
           </Link>
@@ -266,7 +266,7 @@ export default function Home() {
                 <h3 className="font-semibold text-xs sm:text-base">Linha Agrícola</h3>
               </div>
               <div className="absolute inset-x-0 top-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                <span className="text-white text-base sm:text-lg font-bold drop-shadow-lg">Ver produtos</span>
+                <span className="text-[#0252A7] text-base sm:text-lg font-bold drop-shadow-lg">Ver produtos</span>
               </div>
             </div>
           </Link>
@@ -653,11 +653,142 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Blog Section */}
+      <section className="bg-[#0a0a0a] py-12 sm:py-16 relative overflow-hidden">
+        {/* Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#EF1923]/10 to-[#EF1923]/20" />
+        <div className="container mx-auto px-3 sm:px-4 relative z-10">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3">
+              Blog Spagnol
+            </h2>
+            <div className="w-20 sm:w-24 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mx-auto mb-3"></div>
+            <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto">
+              Dicas, curiosidades e informações importantes sobre manutenção e cuidados com seu veículo
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
+            {/* Post 1 */}
+            <article className="bg-[#242424] rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+              <div className="h-32 sm:h-36 overflow-hidden">
+                <img src="/images/img-blog/cheklist-blog1.jpg" alt="Manutenção de máquinas agrícolas" className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div className="p-4 sm:p-5 flex flex-col flex-grow">
+                <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+                  <span>15 de Janeiro, 2025</span>
+                  <span>•</span>
+                  <span>Manutenção</span>
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-white mb-2 line-clamp-2">
+                  A importância da manutenção preventiva em máquinas agrícolas
+                </h3>
+                <p className="text-gray-400 text-xs sm:text-sm mb-3 line-clamp-2 flex-grow">
+                  Descubra como a manutenção regular pode aumentar a vida útil do seu equipamento e evitar paradas inesperadas durante a safra.
+                </p>
+                <div>
+                  <Link 
+                    href="/blog/checklist-manutencao-preventiva" 
+                    className="text-white hover:text-gray-200 text-sm font-medium inline-flex items-center gap-1 group"
+                  >
+                    Ler mais 
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            </article>
+
+            {/* Post 2 */}
+            <article className="bg-[#242424] rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+              <div className="h-32 sm:h-36 overflow-hidden">
+                <img src="/images/img-blog/freio-blog2.png" alt="Sistema de freios" className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div className="p-4 sm:p-5 flex flex-col flex-grow">
+                <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+                  <span>10 de Janeiro, 2025</span>
+                  <span>•</span>
+                  <span>Dicas</span>
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-white mb-2 line-clamp-2">
+                  5 sinais de que seu caminhão precisa de revisão no sistema de freios
+                </h3>
+                <p className="text-gray-400 text-xs sm:text-sm mb-3 line-clamp-2 flex-grow">
+                  Aprenda a identificar os principais sinais de desgaste no sistema de freios e garanta sua segurança nas estradas.
+                </p>
+                <div>
+                  <Link 
+                    href="/blog/sistema-freios-guia-completo" 
+                    className="text-white hover:text-gray-200 text-sm font-medium inline-flex items-center gap-1 group"
+                  >
+                    Ler mais 
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            </article>
+
+            {/* Post 3 */}
+            <article className="bg-[#242424] rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+              <div className="h-32 sm:h-36 overflow-hidden">
+                <img src="/images/img-blog/motordiesel-blog3.jpg" alt="Motor diesel" className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div className="p-4 sm:p-5 flex flex-col flex-grow">
+                <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+                  <span>5 de Janeiro, 2025</span>
+                  <span>•</span>
+                  <span>Tecnologia</span>
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-white mb-2 line-clamp-2">
+                  Novas tecnologias em motores diesel: economia e performance
+                </h3>
+                <p className="text-gray-400 text-xs sm:text-sm mb-3 line-clamp-2 flex-grow">
+                  Conheça as últimas inovações em motores diesel que estão revolucionando o mercado de veículos pesados.
+                </p>
+                <div>
+                  <Link 
+                    href="/blog/tecnologia-motores-diesel" 
+                    className="text-white hover:text-gray-200 text-sm font-medium inline-flex items-center gap-1 group"
+                  >
+                    Ler mais 
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div className="text-center">
+            <Button 
+              asChild 
+              size="lg"
+              style={{ backgroundColor: '#EF1923', color: '#FFFFFF' }}
+              className="hover:opacity-90 transition-opacity"
+            >
+              <Link href="/blog">
+                Ver todos os artigos
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* CTA e Mapa Section */}
       <section className="container mx-auto px-3 sm:px-4 mt-8 sm:mt-16 mb-8 sm:mb-16">
         <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
           {/* CTA Card */}
-          <div className="bg-[#151515] rounded-lg p-6 sm:p-8 md:p-12 flex flex-col justify-center items-center text-center">
+          <div className="relative rounded-lg overflow-hidden">
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 z-0"
+              style={{
+                backgroundImage: 'url(/images/estoque.jpeg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+            <div className="absolute inset-0 bg-black/90 z-10" />
+            <div className="relative z-20 p-6 sm:p-8 md:p-12 flex flex-col justify-center items-center text-center h-full">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-white">
               Encontre o que precisa com quem entende do assunto
             </h2>
@@ -685,6 +816,7 @@ export default function Home() {
                   Falar com a Oficina
                 </a>
               </Button>
+            </div>
             </div>
           </div>
           
