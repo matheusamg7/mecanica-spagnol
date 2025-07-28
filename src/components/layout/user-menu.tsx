@@ -57,7 +57,7 @@ export function UserMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="relative p-2 text-[#0252A7] hover:text-[#0252A7]/80 transition-colors cursor-pointer group">
+        <button className="relative p-2 text-[#0252A7] hover:text-[#0252A7]/80 hover:scale-110 hover:rotate-[5deg] transition-all duration-200 cursor-pointer group">
           {user ? (
             <Avatar className="h-6 w-6 ring-2 ring-transparent group-hover:ring-[#0252A7] transition-all">
               <AvatarFallback className="bg-[#0252A7] text-white text-sm font-medium">

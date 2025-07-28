@@ -79,7 +79,7 @@ export function CartButton({
     return (
       <button
         onClick={handleClick}
-        className={cn('relative p-2 text-[#0252A7] hover:text-[#0252A7]/80 transition-colors cursor-pointer', className)}
+        className={cn('relative p-2 text-[#0252A7] hover:text-[#0252A7]/80 hover:scale-110 hover:rotate-[5deg] transition-all duration-200 cursor-pointer', className)}
         aria-label={`Carrinho com ${totalItems} ${totalItems === 1 ? 'item' : 'itens'}`}
       >
         {buttonContent}
@@ -92,7 +92,7 @@ export function CartButton({
     <Link 
       href={href} 
       onClick={handleClick}
-      className={cn('relative p-2 text-[#0252A7] hover:text-[#0252A7]/80 transition-colors cursor-pointer', className)}
+      className={cn('relative p-2 text-[#0252A7] hover:text-[#0252A7]/80 hover:scale-110 hover:rotate-[5deg] transition-all duration-200 cursor-pointer', className)}
       aria-label={`Carrinho com ${totalItems} ${totalItems === 1 ? 'item' : 'itens'}`}
     >
       {buttonContent}
