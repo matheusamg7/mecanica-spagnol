@@ -212,10 +212,12 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0252A7] from-20% to-transparent to-50%" />
               <div className="absolute bottom-0 left-0 right-0 py-1 px-2 sm:px-3 text-white z-10 text-center">
-                <h3 className="font-semibold text-xs sm:text-base">Caminhonetes a Diesel</h3>
+                <h3 className="font-semibold text-sm sm:text-lg">Caminhonetes a Diesel</h3>
               </div>
-              <div className="absolute inset-x-0 top-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                <span className="text-[#0252A7] text-base sm:text-lg font-bold drop-shadow-lg">Ver produtos</span>
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20">
+                <div className="bg-white px-4 py-2 rounded-lg shadow-lg">
+                  <span className="text-[#0252A7] text-sm sm:text-base font-bold">Ver produtos</span>
+                </div>
               </div>
             </div>
           </Link>
@@ -229,10 +231,12 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0252A7] from-20% to-transparent to-50%" />
               <div className="absolute bottom-0 left-0 right-0 py-1 px-2 sm:px-3 text-white z-10 text-center">
-                <h3 className="font-semibold text-xs sm:text-base">Caminhões a Diesel</h3>
+                <h3 className="font-semibold text-sm sm:text-lg">Caminhões a Diesel</h3>
               </div>
-              <div className="absolute inset-x-0 top-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                <span className="text-[#0252A7] text-base sm:text-lg font-bold drop-shadow-lg">Ver produtos</span>
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20">
+                <div className="bg-white px-4 py-2 rounded-lg shadow-lg">
+                  <span className="text-[#0252A7] text-sm sm:text-base font-bold">Ver produtos</span>
+                </div>
               </div>
             </div>
           </Link>
@@ -246,10 +250,12 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0252A7] from-20% to-transparent to-50%" />
               <div className="absolute bottom-0 left-0 right-0 py-1 px-2 sm:px-3 text-white z-10 text-center">
-                <h3 className="font-semibold text-xs sm:text-base">Ônibus</h3>
+                <h3 className="font-semibold text-sm sm:text-lg">Ônibus</h3>
               </div>
-              <div className="absolute inset-x-0 top-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                <span className="text-[#0252A7] text-base sm:text-lg font-bold drop-shadow-lg">Ver produtos</span>
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20">
+                <div className="bg-white px-4 py-2 rounded-lg shadow-lg">
+                  <span className="text-[#0252A7] text-sm sm:text-base font-bold">Ver produtos</span>
+                </div>
               </div>
             </div>
           </Link>
@@ -263,10 +269,12 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0252A7] from-20% to-transparent to-50%" />
               <div className="absolute bottom-0 left-0 right-0 py-1 px-2 sm:px-3 text-white z-10 text-center">
-                <h3 className="font-semibold text-xs sm:text-base">Linha Agrícola</h3>
+                <h3 className="font-semibold text-sm sm:text-lg">Linha Agrícola</h3>
               </div>
-              <div className="absolute inset-x-0 top-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                <span className="text-[#0252A7] text-base sm:text-lg font-bold drop-shadow-lg">Ver produtos</span>
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20">
+                <div className="bg-white px-4 py-2 rounded-lg shadow-lg">
+                  <span className="text-[#0252A7] text-sm sm:text-base font-bold">Ver produtos</span>
+                </div>
               </div>
             </div>
           </Link>

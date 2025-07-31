@@ -93,6 +93,7 @@ export default function BlogPage() {
             <h1 className="text-3xl sm:text-3xl md:text-5xl font-bold text-[#0252A7] mb-4">
               Blog Spagnol
             </h1>
+            <div className="w-20 sm:w-24 h-[1px] bg-gradient-to-r from-transparent via-[#0252A7] to-transparent mx-auto mb-4"></div>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
               Dicas, curiosidades e informações importantes sobre manutenção e cuidados com seu veículo
             </p>
