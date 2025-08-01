@@ -7,7 +7,15 @@ import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
 
 // Sample article data - in a real app, this would come from an API or database
 // Dados dos artigos com conteúdo expandido
-const articlesData: { [key: string]: any } = {
+const articlesData: { [key: string]: {
+  title: string;
+  category: string;
+  date: string;
+  readTime: string;
+  author: string;
+  image: string;
+  content: string;
+} } = {
   'checklist-manutencao-preventiva': {
     title: 'Checklist de Manutenção Preventiva para Seu Veículo',
     category: 'Manutenção',

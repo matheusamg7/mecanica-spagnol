@@ -177,6 +177,58 @@ export function Footer() {
             </div>
           </div>
 
+          {/* Payment Methods */}
+          <div className="border-t border-white/10 pt-6 pb-6">
+            <div className="text-center">
+              <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Formas de Pagamento</h4>
+              <div className="flex flex-wrap justify-center items-center gap-4">
+                {/* Visa */}
+                <div className="bg-white/10 backdrop-blur-sm px-3 py-2 rounded-sm">
+                  <svg className="h-6 w-auto" viewBox="0 0 48 16" fill="none">
+                    <path d="M19.636 5.528h-3.007l-1.88 7.896h3.007l1.88-7.896zM13.731 5.528l-2.869 5.44-.342-1.722-.001-.004-1.002-4.318s-.121-1.396-1.409-1.396H3.25l-.049.187s1.485.309 3.224 1.354l2.674 8.355h3.203l4.763-9.896h-3.334zM43.876 11.356c.012-1.236-.571-2.176-1.935-2.951-.808-.492-1.302-.822-1.295-1.321 0-.442.418-.913 1.321-.913.754-.013 1.302.161 1.729.342l.206.098.311-1.923c-.46-.174-1.181-.361-2.077-.361-2.288 0-3.898 1.216-3.911 2.957-.019 1.287 1.15 2.004 2.027 2.432.902.439 1.205.719 1.199 1.111-.006.6-.719.875-1.383.875-.925 0-1.415-.136-2.176-.471l-.298-.143-.324 2.006c.54.249 1.539.465 2.575.477 2.432 0 4.013-1.199 4.031-3.056v-.154zM35.166 5.528h-1.789c-.554 0-969.249-1.396l-3.854 9.896h2.432l.547-1.51h2.97l.317 1.51h2.145l-1.872-9.896zm-3.366 6.476l1.217-3.366.7 3.366h-1.917z" fill="#1A1F71"/>
+                  </svg>
+                </div>
+                
+                {/* Mastercard */}
+                <div className="bg-white/10 backdrop-blur-sm px-3 py-2 rounded-sm">
+                  <svg className="h-6 w-auto" viewBox="0 0 38 24" fill="none">
+                    <circle cx="14" cy="12" r="9" fill="#EB001B"/>
+                    <circle cx="24" cy="12" r="9" fill="#F79E1B"/>
+                    <path d="M19 17.5c1.8-1.5 3-3.8 3-6.5s-1.2-5-3-6.5c-1.8 1.5-3 3.8-3 6.5s1.2 5 3 6.5z" fill="#FF5F00"/>
+                  </svg>
+                </div>
+                
+                {/* Pix */}
+                <div className="bg-white/10 backdrop-blur-sm px-3 py-2 rounded-sm">
+                  <span className="text-[#32BCAD] font-bold text-lg">PIX</span>
+                </div>
+                
+                {/* Boleto */}
+                <div className="bg-white/10 backdrop-blur-sm px-3 py-2 rounded-sm">
+                  <svg className="h-6 w-auto" viewBox="0 0 40 24" fill="none">
+                    <rect x="2" y="4" width="2" height="16" fill="white"/>
+                    <rect x="6" y="4" width="1" height="16" fill="white"/>
+                    <rect x="8" y="4" width="3" height="16" fill="white"/>
+                    <rect x="12" y="4" width="1" height="16" fill="white"/>
+                    <rect x="14" y="4" width="2" height="16" fill="white"/>
+                    <rect x="18" y="4" width="1" height="16" fill="white"/>
+                    <rect x="20" y="4" width="3" height="16" fill="white"/>
+                    <rect x="24" y="4" width="1" height="16" fill="white"/>
+                    <rect x="26" y="4" width="2" height="16" fill="white"/>
+                    <rect x="30" y="4" width="1" height="16" fill="white"/>
+                    <rect x="32" y="4" width="3" height="16" fill="white"/>
+                    <rect x="36" y="4" width="2" height="16" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Transferência */}
+                <div className="bg-white/10 backdrop-blur-sm px-3 py-2 rounded-sm">
+                  <span className="text-white text-sm font-medium">Transferência</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Bottom Bar */}
           <div className="border-t border-white/10 pt-8">
             

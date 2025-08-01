@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Sans } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { TopBar } from "@/components/layout/top-bar";
 import { Header } from "@/components/layout/header";
@@ -8,11 +8,10 @@ import { siteConfig } from "@/lib/config/site";
 import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "@/contexts/auth-context";
 
-const inter = Inter({ subsets: ["latin"] });
-const ibmPlexSans = IBM_Plex_Sans({ 
+const montserrat = Montserrat({ 
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-ibm-plex-sans"
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-montserrat"
 });
 
 export const metadata: Metadata = {
@@ -50,7 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${inter.className} ${ibmPlexSans.variable}`}>
+      <body className={`${montserrat.className} ${montserrat.variable}`}>
         <AuthProvider>
           <div className="relative flex min-h-screen flex-col">
             <TopBar />
